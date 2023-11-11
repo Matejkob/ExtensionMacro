@@ -1,8 +1,16 @@
 import ExtensionMacro
 
-let a = 17
-let b = 25
+@AddFooProtocol
+public struct Bar {
+  func test() { foo() }
 
-let (result, code) = #stringify(a + b)
+  private func foo() {
+    print("Internal implementation")
+  }
+}
 
-print("The value \(result) was produced by the code \"\(code)\"")
+let bar = Bar()
+
+bar.foo()
+
+bar.test()
